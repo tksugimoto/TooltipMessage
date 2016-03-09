@@ -1,0 +1,11 @@
+{
+	"name": "TooltipMessage",
+	"version": "1.0.0",
+	"main": [
+		"TooltipMessage.js",
+		"TooltipMessage.css"
+	],
+	"ignore": [
+		
+	]
+}
