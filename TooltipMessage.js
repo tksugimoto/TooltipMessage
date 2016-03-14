@@ -8,11 +8,14 @@
 	container.setAttribute("data-chrome-extension-id", extensionId);
 	document.body.appendChild(container);
 	
-	function set(elem, message) {
+	function set(elem, message, show = false) {
 		if (!elem.hasAttribute(messageAttrName)) {
 			elem.setAttribute(messageAttrName, message);
 			var tooltipElem = create(message);
 			setEvent(elem, tooltipElem);
+			if (show) {
+				showTooltipElem(elem, tooltipElem);
+			}
 		}
 	}
 	
