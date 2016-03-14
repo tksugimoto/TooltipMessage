@@ -27,17 +27,21 @@
 	
 	function setEvent(targetElem, tooltipElem) {
 		targetElem.addEventListener("mouseover", (evt) => {
-			tooltipElem.style.display = "block";
-			var {top, left} = getOffsets(targetElem);
-			var marginBottom = 10;
-			top += -tooltipElem.offsetHeight - marginBottom;
-			left += (targetElem.offsetWidth - tooltipElem.offsetWidth) / 2;
-			tooltipElem.style.top = `${top}px`;
-			tooltipElem.style.left = `${left}px`;
+			showTooltipElem(targetElem, tooltipElem);
 		});
 		targetElem.addEventListener("mouseout", () => {
 			tooltipElem.style.display = "none";
 		});
+	}
+	
+	function showTooltipElem(targetElem, tooltipElem) {
+		tooltipElem.style.display = "block";
+		var {top, left} = getOffsets(targetElem);
+		var marginBottom = 10;
+		top += -tooltipElem.offsetHeight - marginBottom;
+		left += (targetElem.offsetWidth - tooltipElem.offsetWidth) / 2;
+		tooltipElem.style.top = `${top}px`;
+		tooltipElem.style.left = `${left}px`;
 	}
 	
 	function getOffsets(elem) {
