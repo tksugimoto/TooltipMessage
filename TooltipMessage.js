@@ -8,11 +8,14 @@
 	container.setAttribute("data-chrome-extension-id", extensionId);
 	document.body.appendChild(container);
 	
-	function set(elem, message) {
+	function set(elem, message, show = false) {
 		if (!elem.hasAttribute(messageAttrName)) {
 			elem.setAttribute(messageAttrName, message);
 			var tooltipElem = create(message);
 			setEvent(elem, tooltipElem);
+			if (show) {
+				showTooltipElem(elem, tooltipElem);
+			}
 		}
 	}
 	
@@ -27,17 +30,21 @@
 	
 	function setEvent(targetElem, tooltipElem) {
 		targetElem.addEventListener("mouseover", (evt) => {
-			tooltipElem.style.display = "block";
-			var {top, left} = getOffsets(targetElem);
-			var marginBottom = 10;
-			top += -tooltipElem.offsetHeight - marginBottom;
-			left += (targetElem.offsetWidth - tooltipElem.offsetWidth) / 2;
-			tooltipElem.style.top = `${top}px`;
-			tooltipElem.style.left = `${left}px`;
+			showTooltipElem(targetElem, tooltipElem);
 		});
 		targetElem.addEventListener("mouseout", () => {
 			tooltipElem.style.display = "none";
 		});
+	}
+	
+	function showTooltipElem(targetElem, tooltipElem) {
+		tooltipElem.style.display = "block";
+		var {top, left} = getOffsets(targetElem);
+		var marginBottom = 10;
+		top += -tooltipElem.offsetHeight - marginBottom;
+		left += (targetElem.offsetWidth - tooltipElem.offsetWidth) / 2;
+		tooltipElem.style.top = `${top}px`;
+		tooltipElem.style.left = `${left}px`;
 	}
 	
 	function getOffsets(elem) {
