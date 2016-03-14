@@ -14,9 +14,10 @@
 	content: "";
 	position: absolute;
 	left: 50%;
-	bottom: -20px;
+	bottom: -10px;
 	margin-left: -10px;
 	border-width: 10px;
+	border-bottom-width: 0;
 	border-style: solid;
 	border-color: transparent;
 	border-top-color: white;
